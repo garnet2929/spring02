@@ -14,9 +14,9 @@
   http://www.springframework.org/schema/tx
   http://www.springframework.org/schema/tx/spring-tx.xsd">
   
+  <bean id="memberDao" class="kr.itthis.exam.member.repository.MemberDaoImpl"></bean>
+  <bean id="memberService" class="kr.itthis.exam.member.service.MemberServiceImpl">
+  	<constructor-arg ref="memberDao"/>
+  </bean>
 	
 </beans>
-
-
-
-
