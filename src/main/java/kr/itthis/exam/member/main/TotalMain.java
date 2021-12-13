@@ -48,7 +48,7 @@ public class TotalMain {
 		for(Member member : ls) {
 			System.out.println(member);
 		}
-		System.out.println("목록 출력 완료");
+		System.out.println("목록 출력 완료.");
 	}
 	
 	private static void searchProcess(String[] args) {
