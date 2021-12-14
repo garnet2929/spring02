@@ -19,7 +19,7 @@ public class TotalMain {
 	public static void main(String[] args) {
 		
 		Scanner in = new Scanner(System.in);
-		
+		System.out.println("프로그램 시작");
 		while(true) {
 			String command = "";
 			System.out.print("명령어 입력>");
