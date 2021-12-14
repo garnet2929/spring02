@@ -3,23 +3,35 @@ package kr.itthis.exam.member.main;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
 import kr.itthis.exam.member.domain.Member;
 import kr.itthis.exam.member.domain.MemberRegistCommand;
 import kr.itthis.exam.member.exception.ConfirmPasswordException;
 import kr.itthis.exam.member.exception.EmailAlreadyExistsException;
 import kr.itthis.exam.member.exception.MemberExistsException;
 import kr.itthis.exam.member.exception.PasswordAuthException;
-import kr.itthis.exam.member.repository.MemberDaoImpl;
-import kr.itthis.exam.member.service.MemberServiceImpl;
+import kr.itthis.exam.member.service.MemberService;
 
-public class TotalMain {
+public class TotalMainSpringContextContainer {
 	
-	private static MemberServiceImpl msi = new MemberServiceImpl(new MemberDaoImpl());
+	//private static MemberServiceImpl msi = new MemberServiceImpl(new MemberDaoImpl());
+	private static MemberService msi;
+	
+	private static final Logger logger = LogManager.getLogger(TotalMainSpringContextContainer.class);
 	
 	public static void main(String[] args) {
+		//MyContextContainer mctx = new MyContextContainer();
+		//msi = mctx.getMemberService();
+		logger.info("Program started...");
+		GenericXmlApplicationContext mctx = new GenericXmlApplicationContext("classpath:appctx.xml");
+		msi = mctx.getBean("memberService", MemberService.class);
 		
 		Scanner in = new Scanner(System.in);
-		System.out.println("프로그램 시작");
+		
 		while(true) {
 			String command = "";
 			System.out.print("명령어 입력>");
@@ -36,11 +48,13 @@ public class TotalMain {
 				removeProcess(command.split(" "));
 			}else if(command.equals("quit")){
 				System.out.println("프로그램 종료!");
+				mctx.close();
 				return;
 			}else {
 				printHelp();
 			}
 		}
+		
 	}
 	
 	private static void listProcess() {

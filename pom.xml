@@ -1,17 +1,29 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>kr.itthis.exam</groupId>
-  <artifactId>spring02</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  <properties>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>kr.itthis.exam</groupId>
+	<artifactId>spring02</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
 		<java-version>1.8</java-version>
+		<spring-version>5.3.13</spring-version>
 	</properties>
-  
-  <build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.15.0</version>
+        </dependency>
+	</dependencies>
+
+	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -25,4 +37,3 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
 		</plugins>
 	</build>
 </project>
-

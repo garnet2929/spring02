@@ -9,17 +9,19 @@ import kr.itthis.exam.member.exception.ConfirmPasswordException;
 import kr.itthis.exam.member.exception.EmailAlreadyExistsException;
 import kr.itthis.exam.member.exception.MemberExistsException;
 import kr.itthis.exam.member.exception.PasswordAuthException;
-import kr.itthis.exam.member.repository.MemberDaoImpl;
-import kr.itthis.exam.member.service.MemberServiceImpl;
+import kr.itthis.exam.member.service.MemberService;
 
-public class TotalMain {
+public class TotalMainContextContainer {
 	
-	private static MemberServiceImpl msi = new MemberServiceImpl(new MemberDaoImpl());
+	//private static MemberServiceImpl msi = new MemberServiceImpl(new MemberDaoImpl());
+	private static MemberService msi;
 	
 	public static void main(String[] args) {
+		MyContextContainer mctx = new MyContextContainer();
+		msi = mctx.getMemberService();
 		
 		Scanner in = new Scanner(System.in);
-		System.out.println("프로그램 시작");
+		
 		while(true) {
 			String command = "";
 			System.out.print("명령어 입력>");
